@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ZemiPost</title>
+    <title>大竹ゼミ生情報共有サービス</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,8 +10,37 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <ul class='nav'>
+      <li class='nav_link'><%=link_to  "ホーム", member_root_path %></li>
+      <% if user_signed_in? %>
+        <li class='nav_link'><%=link_to  "ログアウト", destroy_user_session_path, method: :delete%></li>
+        <li class='dropdown'>
+          <a class="dropbtn">ユーザー</a>
+          <div class="dropdown-content">
+            <%= link_to  "ユーザー編集", edit_user_registration_path %>
+            
+            <% if current_user.member %>
+              <%=link_to  "ユーザー一覧", member_users_path %>
+            <% end %>
+          </div>
+        </li>
+        
+        <% if current_user.member %>
+          <li class='nav_link'><%=link_to  "記事を投稿する", new_member_post_path %></li>
+        <% end %>
+        
+      <% else %>
+        <li class='nav_link'><%=link_to  "ログイン", new_user_session_path%></li>
+      <% end %>
+      
+    </ul>
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>

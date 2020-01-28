@@ -1,0 +1,32 @@
+<% if user_signed_in? %>
+  <% if current_user.member %>
+    <% @posts.each do |post| %>
+      <div class="article-wrap">
+        <div class="article">
+          <div class="body-box">
+            <div class="article-body">
+              <div class="inner">
+                <h2 class="article-title"><%=link_to post.title, member_post_path(post) %></h2>
+                <p><%= post.content %></p>
+              </div>
+              <div class="publish-time-wrap">
+                <div class="article-text"><%= simple_time(post[:created_at]) %></div>
+                <div class="article-text"><%= post.user.name %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  <% else %>
+    <div class="container">
+      <h2>認証されるまでお待ちください</h2>
+    </div>
+  <% end %>
+  
+<% else %>
+  <div class="container">
+    <h2>これはゼミ生限定の情報共有サービスです</h2>
+    <%= link_to  "新規登録", new_user_registration_path, class: 'new_regist_btn btn_item'%>
+  </div>
+<% end %>

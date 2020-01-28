@@ -1,0 +1,12 @@
+
+<% @users.each do |user| %>
+  <div class="user_wrap">
+    <div><%= user.name %></div>
+    <% if user.member %>
+
+      <%= link_to '認証解除', member_user_path(user), method: :put, class: 'btn_item btn_delete_item' %>
+    <% else %>
+      <%= link_to '認証する', member_user_path(user), method: :put, class: 'btn_item btn_edit_item' %>
+    <% end %>
+  </div>
+<% end %>
