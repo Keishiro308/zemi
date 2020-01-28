@@ -58,6 +58,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     context.respond_to?(:root_path) ? context.root_path : "/member"
   end
 
+  def after_update_path_for(resource)
+    member_root_path
+  end
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
