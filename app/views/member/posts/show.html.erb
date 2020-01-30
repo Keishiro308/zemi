@@ -1,8 +1,18 @@
 <div class="article_wrap">
   <div class="title_wrap">
     <h2><%= @post.title %></h2>
-    <p><%= @post.user.name%></p>
-    <span><%= simple_time(@post.created_at) %></span>
+    <p><%= icon('fas', 'user') %> <%= @post.user.name%></p>
+    <span><%= icon('fas', 'clock') %> <%= simple_time(@post.created_at) %></span><br>
+    <%= icon('fas', 'tag') %>
+    <% @post.tags.each do |tag| %>
+     <span class='tag_badge'><%= link_to tag.name, member_root_path(tag: tag.id)%></span>
+    <% end %>
+    <br>
+    <% if @post.user.id == current_user.id %>
+      <%= link_to  "編集", edit_member_post_path(@post), class: 'btn_item btn_edit_item' %>
+      <%= link_to "削除", member_post_path(@post), method: "delete", data:{ confirm: "本当に削除しますか？"}, class: 'btn_item btn_delete_item' %>
+    <% end %>
+      
   </div>
   <hr>
   <div class="content_wrap">

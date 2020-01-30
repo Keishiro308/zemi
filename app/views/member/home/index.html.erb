@@ -1,5 +1,10 @@
 <% if user_signed_in? %>
   <% if current_user.member %>
+    <% if @tag.present? %>
+      <h2><span class='tag_icon'><%= @tag.name %></span><%= @title %> <%=@tag.posts.size%>件</h2>
+    <% else %>
+      <h2>全ての投稿</h2>
+    <% end %>
     <% @posts.each do |post| %>
       <div class="article-wrap">
         <div class="article">
@@ -10,8 +15,14 @@
                 <p><%= post.content %></p>
               </div>
               <div class="publish-time-wrap">
-                <div class="article-text"><%= simple_time(post[:created_at]) %></div>
-                <div class="article-text"><%= post.user.name %></div>
+                <div class="article-text"><%= icon('fas', 'clock') %> <%= simple_time(post[:created_at]) %></div>
+                <div class="article-text"><%= icon('fas', 'user') %> <%= post.user.name %></div>
+                <div class="tag_wrap">
+                  <%= icon('fas', 'tag') %>
+                  <% post.tags.each do |tag| %>
+                    <span class='tag_badge'><%= link_to tag.name, member_root_path(tag: tag.id) %></span>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>

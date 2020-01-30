@@ -8,7 +8,9 @@ class Member::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    tag_list = params[:tags].split(',')
     if @post.save
+      @post.save_tags(tag_list)
       flash[:notice] = '投稿できました'
       redirect_to member_root_path
     else
@@ -19,11 +21,14 @@ class Member::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list = @post.tags.pluck(:name).join(',')
   end
 
   def update
     @post = Post.find(params[:id])
+    tag_list = params[:tags].split(',')
     if @post.update(post_params)
+      @post.save_tags(tag_list)
       flash[:notice] = '更新しました'
       redirect_to member_root_path
     else
@@ -50,6 +55,6 @@ class Member::PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content, :tags)
     end
 end

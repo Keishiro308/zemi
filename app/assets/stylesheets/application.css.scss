@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
 
  body{
    margin: 0;
@@ -198,6 +200,23 @@ ul.nav li.dropdown {
       }
     }
   }
+  .rich_text_field{
+    width: 90%;
+    margin: 30px auto;
+  }
+  ul#tag-input{
+    border: none;
+    border-bottom: 1px solid #04e25a;
+    border-radius: 0;
+    margin-top: 5px;
+    li.tagit-choice{
+      background-color: #04e25a;
+      border: 1px solid #04e25a;
+      span{
+        color: white;
+      }
+    }
+  }
   .textarea_field{
     margin: 20px auto;
     margin-left: auto;
@@ -277,31 +296,35 @@ select::-ms-expand {
 
 .article-wrap{
   margin-top: 20px;
+  min-height: 230px;
   filter: drop-shadow(5px 5px rgb(168, 168, 168));
   transition: .3s;
-  &:hover{
-    filter: drop-shadow(5px 5px 15px rgb(168, 168, 168));
-    transition: .3s;
-    transform: translate(-5px,-5px);
-  }
   .article{
     padding: 0;
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
+    // min-height: 200px;
+    height: 200px;
     width: 50%;
+    &:hover{
+      filter: drop-shadow(5px 5px 15px rgb(168, 168, 168));
+      transition: .3s;
+      transform: translate(-5px,-5px);
+    }
     .body-box{
       position: relative;
       width: 100%;
       box-sizing: border-box;
-      height: 200px;
-      overflow: hidden;
+      // overflow: hidden;
       background: white;
+      height: 100%;
       .article-body{
         .inner{
           padding: 15px;
           overflow: hidden;
+          height: 100px;
           a{
             color: black;
           }
@@ -309,17 +332,50 @@ select::-ms-expand {
         .publish-time-wrap{
           width: 100%;
           position: absolute;
-          bottom: 0px;
+          top: 130px;
           overflow: hidden;
           background: white;
           border-top: 1px dotted rgb(135, 132, 135);
           padding: 0;
           text-align: right;
           color: rgb(135, 132, 135);
+          // margin-bottom: 20px;
+          .tag_wrap{
+            margin: 5px;
+            text-align: left;
+          }
         }
       }
     }
   }
+}
+.tag_badge{
+  text-align: center;
+  display: inline-block;
+  background-color: #04e25a;
+  border-radius: 5px;
+  min-width: 25px;
+  height: 15px;
+  padding: 3px 5px;
+  margin: 2px;
+  font-size: 12px;
+  line-height: 15px;
+  a{
+    color: white;
+  }
+}
+.tag_icon{
+  text-align: center;
+  display: inline-block;
+  background-color: #04e25a;
+  border-radius: 5px;
+  color: white;
+  min-width: 35px;
+  height: 1.2em;
+  padding: 3px 5px;
+  // margin: 2px;
+  font-size: 1em;
+  line-height: 1.2em;
 }
 
 /*btn*/

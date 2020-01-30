@@ -9,10 +9,22 @@
       <span class='focus_line'></span>
       </div>
     </div>
-    <div>
+
+    <div class='field'>
+      <div class="form_wrap" id='tag-field'>
+        <%= label :content, 'タグ(,区切りで入力)' %> <br>
+        <small>例：ゼミ,R,データ加工</small>
+        <ul id='tag-input'></ul>
+        <%= hidden_field_tag :hidden_tag, @tag_list %>
+      </div>
+    </div>
+
+    <div class='rich_text_field'>
       <%= f.label :content, '本文' %>
       <%= f.rich_text_area :content %>
     </div>
+
+    
     <%= f.submit text, class: 'btn' %>
   <% end %>
 </div>
