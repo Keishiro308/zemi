@@ -6,10 +6,15 @@
   <figcaption class="attachment__caption">
     <% if caption = blob.try(:caption) %>
       <%= caption %>
-      <span class="attachment__name"><%= link_to(blob.filename, rails_blob_path(blob), target: :_blank) %></span>
+      <p>
+        <span class="attachment__name"><%= link_to(blob.filename, rails_blob_path(blob), target: :_blank) %></span>
+        <span class="attachment__size"><%= number_to_human_size blob.byte_size %></span>
+      </p>
     <% else %>
-      <span class="attachment__name"><%= link_to(blob.filename, rails_blob_path(blob), target: :_blank) %></span>
-      <span class="attachment__size"><%= number_to_human_size blob.byte_size %></span>
+      <p>
+        <span class="attachment__name"><%= link_to(blob.filename, rails_blob_path(blob), target: :_blank) %></span>
+        <span class="attachment__size"><%= number_to_human_size blob.byte_size %></span>
+      </p>
     <% end %>
   </figcaption>
 </figure>
