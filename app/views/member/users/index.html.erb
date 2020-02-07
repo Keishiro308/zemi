@@ -4,7 +4,7 @@
     <div><%= user.name %></div>
     <% if user.member %>
 
-      <%= link_to '認証解除', member_user_path(user), method: :put, class: 'btn_item btn_delete_item user_active' %>
+      <%= link_to '認証解除', member_user_path(user), method: :put, class: 'btn_item btn_delete_item user_active', data: { confirm: '本当に解除してよろしいですか？' } %>
     <% else %>
       <%= link_to '認証する', member_user_path(user), method: :put, class: 'btn_item btn_edit_item user_active' %>
     <% end %>
