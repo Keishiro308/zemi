@@ -1,9 +1,13 @@
 <% if user_signed_in? %>
   <% if current_user.member %>
     <% if @tag.present? %>
-      <h2><span class='tag_icon'><%= @tag.name %></span><%= @title %> <%=@tag.posts.size%>件</h2>
+      <div class="heading">
+        <h2><span class='tag_icon'><%= @tag.name %></span><%= @title %> <%=@tag.posts.size%>件</h2>
+      </div>
     <% else %>
-      <h2>全ての投稿</h2>
+      <div class="heading">
+        <h2>全ての投稿</h2>
+      </div>
     <% end %>
     <% @posts.each do |post| %>
       <div class="article-wrap">

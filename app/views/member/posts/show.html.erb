@@ -1,8 +1,8 @@
 <div class="article_wrap">
   <div class="title_wrap">
     <h2><%= @post.title %></h2>
-    <p><%= icon('fas', 'user') %> <%= @post.user.name%></p>
-    <span><%= icon('fas', 'clock') %> <%= simple_time(@post.created_at) %></span><br>
+    <p><%= icon('fas', 'user') %>  <%= @post.user.name%></p>
+    <span class='publish_time'><%= icon('fas', 'clock') %>  <%= simple_time(@post.created_at) %></span><br>
     <%= icon('fas', 'tag') %>
     <% @post.tags.each do |tag| %>
      <span class='tag_badge'><%= link_to tag.name, member_root_path(tag: tag.id)%></span>
@@ -18,5 +18,10 @@
   <div class="content_wrap">
     <%= @post.content %>
   </div>
+  <%= link_to '#' do %>
+    <div class="up_to_top">
+      <%= icon 'fas', 'chevron-up'%>
+    </div>
+  <% end %>  
 </div>
 

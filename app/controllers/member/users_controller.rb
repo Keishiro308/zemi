@@ -1,7 +1,7 @@
 class Member::UsersController < ApplicationController
   before_action :member?
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(20).order(created_at: :desc)
   end
   
 

@@ -1,6 +1,8 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@import './mediaquery';
+
 .user_wrap{
   background-color: white;
   margin-bottom: 10px;
@@ -15,5 +17,29 @@
   div{
     width: 50%;
     line-height: 40px;
+  }
+  @include tab_sp{
+    height: 10vh;
+    position: relative;
+    div{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: inherit;
+      font-size: 5vh;
+      text-align: center;
+    }
+    .user_active{
+      position: absolute;
+      top: 50%;
+      right: 10%;
+      transform: translateY(-50%);
+      font-size: 3vh;
+      height: 5vh;
+      width: auto;
+      padding: 5px;
+      line-height: 5vh;
+      overflow: auto;
+    }
   }
 }

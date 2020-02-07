@@ -1,0 +1,55 @@
+$pc: 1024px; // PC
+$tab: 680px; // タブレット
+$sp: 300px;  // スマホ
+
+$breakpoints:(
+  sm: $sp,
+  md: $tab,
+  lg: $pc
+) !default;
+
+@mixin mediaQuery-between($breakpoint1, $breakpoint2) {
+  $size1: $tab;
+  $size2: $pc;
+  @each $bp, $size in $breakpoints{
+    @if ( $bp == $breakpoint1 ){
+      $size1: $size;
+    }
+    @if ( $bp == $breakpoint2 ){
+      $size2: $size;
+    }
+  }
+  @if ( $size1 <= $size2 ) {
+    @media ( min-width: #{map-get($breakpoints, $breakpoint1)} ) and ( max-width: #{map-get($breakpoints, $breakpoint2)} ) {
+      @content;
+    }
+  } @else {
+    @media ( min-width: #{map-get($breakpoints, $breakpoint2)} ) and ( max-width: #{map-get($breakpoints, $breakpoint1)} ) {
+      @content;
+    }
+  }
+}
+
+@mixin mediaQuery-up($breakpoint) {
+  @media ( min-width: #{map-get($breakpoints, $breakpoint)} ) {
+    @content;
+  }
+}
+
+@mixin mediaQuery-down($breakpoint) {
+  @media ( max-width: #{map-get($breakpoints, $breakpoint)} ) {
+    @content;
+  }
+}
+
+@mixin tab_sp {
+  @media screen and (max-width: #{$pc - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: #{$pc}) {
+    @content;
+  }
+}
