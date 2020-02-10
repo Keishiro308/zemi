@@ -20,6 +20,20 @@
         margin-left: auto;
       }
     }
+    .up_to_top{
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #04e25a;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      color: white;
+      line-height: 100px;
+      text-align: center;
+      font-size: 45px;
+      font-weight: bold;
+    }
   }
   @include tab_sp{
     font-size: 2em;
