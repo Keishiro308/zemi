@@ -13,6 +13,9 @@
   <body>
     <ul class='nav'>
       <li class='nav_link'><%=link_to  "ホーム", member_root_path %></li>
+      <li class="menu_btn" id='menu-btn'>
+        <%=icon 'fas', 'bars'%>
+      </li>
       <% if user_signed_in? %>
         <li class='nav_link'><%=link_to  "ログアウト", destroy_user_session_path, method: :delete%></li>
         <li class='dropdown'>
@@ -25,9 +28,7 @@
             <% end %>
           </div>
         </li>
-        <li class="menu_btn" id='menu-btn'>
-          <%=icon 'fas', 'bars'%>
-        </li>
+        
         
         <% if current_user.member %>
           <li class='nav_link'><%=link_to  "記事を投稿する", new_member_post_path %></li>
