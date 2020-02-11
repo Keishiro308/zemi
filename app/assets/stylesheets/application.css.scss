@@ -41,6 +41,7 @@
   padding: 0;
   overflow: hidden;
   background-color: #333;
+  position: relative;
   li{
     &.nav_link {
       float: left;
@@ -94,19 +95,51 @@
         }
       }
     }
+    &.menu_btn{
+      display: none;
+    }
   }
   @include tab_sp{
     height: 100px;
     font-size: 2.5em;
     li{
       height: 100%;
+      display: none;
       a{
         height: 100%;
       }
       &.dropdown{
+        display: none;
         .dropbtn{
           box-sizing: border-box;
         }
+      }
+      &.menu_btn{
+        display: block;
+        color: white;
+        font-size: 45px;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        line-height: 100px;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.menu{
+  display: none;
+  @include tab_sp{
+    background: hsla(0, 0%, 50%, 0.658);
+    .menu_item{
+      text-align: center;
+      font-size: 45px;
+      margin-bottom: 25px;
+      a{
+        color: white;
+        text-decoration: none;
       }
     }
   }

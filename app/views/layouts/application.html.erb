@@ -25,6 +25,9 @@
             <% end %>
           </div>
         </li>
+        <li class="menu_btn" id='menu-btn'>
+          <%=icon 'fas', 'bars'%>
+        </li>
         
         <% if current_user.member %>
           <li class='nav_link'><%=link_to  "記事を投稿する", new_member_post_path %></li>
@@ -35,6 +38,21 @@
       <% end %>
       
     </ul>
+
+    <div class="menu" id='menu'>
+      <div class='menu_item'><%=link_to  "ホーム", member_root_path %></div>
+      <% if user_signed_in? %>
+        <div class='menu_item'><%=link_to  "ログアウト", destroy_user_session_path, method: :delete%></div>
+        <div class='menu_item'><%= link_to  "ユーザー編集", edit_user_registration_path %></div>
+        <% if current_user.member %>
+          <div class='menu_item'><%=link_to  "ユーザー一覧", member_users_path %></div>
+          <div class='menu_item'><%=link_to  "記事を投稿する", new_member_post_path %></div>
+        <% end %>
+      <% else %>
+        <div class='menu_item'><%=link_to  "ログイン", new_user_session_path%></div>
+      <% end %>
+    </div>
+
     <% if notice %>
       <p class="notice"><%= notice %></p>
     <% end %>
