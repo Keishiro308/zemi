@@ -28,6 +28,9 @@
    background-color: white;
    text-align: center;
    padding: 20px;
+   @include tab_sp{
+     font-size: 2em;
+   }
  }
  .heading{
    @include tab_sp{
@@ -841,6 +844,12 @@ a{
     height: 50px;
     line-height: 50px;
     font-size: 20px;
+    @include tab_sp{
+      width: 200px;
+      height: 100px;
+      line-height: 100px;
+      font-size: 40px;
+    }
   }
   &.btn_delete_invite{
     background-color: #ff4101;
