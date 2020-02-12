@@ -1,0 +1,12 @@
+
+post_id = <%= @post.id %>
+
+$( `.bookmark_btn_${post_id}` ).html("<%= escape_javascript(render partial:'bookmark', locals:{post: @post})%>");
+
+$('.message_container').fadeIn(300);
+$('.message_wrap').html('<div class="bookmark_delete"><div class="bookmark_icon"><%=icon "far", "times-circle"%></div>ブックマークを解除しました</div>');
+setTimeout(function(){
+  $('.message_container').fadeOut(300);
+},1500);
+
+delete post_id;

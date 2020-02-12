@@ -3,4 +3,7 @@ $(document).on('turbolinks:load', function(){
     console.log('hello')
     $('html').animate({scrollTop:10});
   });
+  $(window).scroll(function(){
+    $('#top_btn').show();
+  });
 });

@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :bookmarkings, dependent: :destroy
+  has_many :like_users, through: :bookmarkings, source: :user
   has_rich_text :content
   validates :title, presence: true
   validates :content, presence: true
@@ -22,4 +24,9 @@ class Post < ApplicationRecord
       self.tags << post_tag
     end
   end
+
+  def liked_by?(user)
+    self.like_users.include?(user)
+  end
+  
 end

@@ -1,0 +1,4 @@
+<h1><%= current_user.name %>さんのマイページ</h1>
+<h2>ブックマークした投稿</h2>
+<%= render 'shared/posts', posts: @like_posts %>
+<%= paginate @like_posts%>
