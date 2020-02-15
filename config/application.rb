@@ -25,5 +25,6 @@ module ZemiPost
         Nokogiri::HTML.fragment(html_tag).search('input', 'textarea', 'select').add_class('is_error').to_html.html_safe
       end
     end
+    config.beginning_of_week = :sunday
   end
 end

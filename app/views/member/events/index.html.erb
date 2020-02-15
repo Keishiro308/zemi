@@ -1,0 +1,14 @@
+<%= month_calendar(attribute: :date, events: @events) do |date, events| %>
+  <%= link_to date.day, events_date_path(date: date)  %>
+  
+  <% events.each do |event| %>
+    <div class="event">
+      <%= event.title %>
+    </div>
+  <% end %>
+<% end %>
+<div class="add_btn">
+  <%= link_to new_member_event_path do%>
+    <%= icon 'fas', 'plus'%>
+  <% end %>
+</div>

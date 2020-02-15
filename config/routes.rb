@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'events/index' => 'member/events#index'
+  get 'events/date' => 'member/events#date'
   root 'top#index'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
   namespace :member do
     resources :posts
     resources :users, only: [:index, :update, :show]
+    resources :events, only: [:edit, :update, :new, :destroy, :create]
     root 'home#index'
   end
   

@@ -13,6 +13,7 @@
   <body>
     <ul class='nav'>
       <li class='nav_link'><%=link_to  "ホーム", member_root_path %></li>
+      <li class='nav_link'><%=link_to  "スケジュール", events_index_path %></li>
       <li class="menu_btn" id='menu-btn'>
         <%=icon 'fas', 'bars'%>
       </li>
@@ -43,6 +44,7 @@
 
     <div class="menu" id='menu'>
       <div class='menu_item'><%=link_to  "ホーム", member_root_path %></div>
+      <div class='menu_item'><%=link_to  "スケジュール", events_index_path %></div>
       <% if user_signed_in? %>
         <div class='menu_item'><%=link_to  "ログアウト", destroy_user_session_path, method: :delete%></div>
         <div class='menu_item'><%= link_to  "ユーザー編集", edit_user_registration_path %></div>

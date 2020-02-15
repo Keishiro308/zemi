@@ -66,3 +66,5 @@ gem 'font-awesome-sass', '~> 5.12.0'
 gem 'aws-sdk-s3', require: false
 
 gem 'kaminari'
+
+gem "simple_calendar", "~> 2.0"
