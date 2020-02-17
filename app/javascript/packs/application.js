@@ -6,6 +6,8 @@ import './tag';
 import './menu';
 import './top_btn';
 
+import './swiper'
+
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
@@ -15,7 +17,6 @@ global.jQuery = $
 require('jquery')
 require("jquery-ui")
 require('tag-it')
-
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

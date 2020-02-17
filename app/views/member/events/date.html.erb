@@ -4,14 +4,30 @@
   <%= link_to  "次>", events_date_path(date: @date + 1.day) %>
   <% if @event %>
     <p><%= @event.title %></p>
-    <p><%= @event.detail %></p>
+    <% if @event.images.present? %>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <% @event.images.each do |image| %>
+            <div class="swiper-slide">
+              <%= image_tag image.name.url %>
+            </div>
+          <% end %>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    <% end %>
+    <p class='detail'><%= @event.detail %></p>
     <% if current_user.present? && current_user.member? %>
-      <%= link_to  "編集する", edit_member_event_path(@event), class: 'btn_edit_item btn_item' %>
-      <%= link_to  "削除する", member_event_path(@event), class: 'btn_item btn_delete_item', 
-      data: { confirm: '本当に削除してもよろしいですか？' }, method: :delete %>
+      <div class="btn_wrapper">
+        <%= link_to  "編集する", edit_member_event_path(@event), class: 'btn_edit_item btn_item' %>
+        <%= link_to  "削除する", member_event_path(@event), class: 'btn_item btn_delete_item', 
+        data: { confirm: '本当に削除してもよろしいですか？' }, method: :delete %>
+      </div>
   <% end %>
   <% else %>
     <p>この日にはイベントがありません</p>
   <% end %>
-  
+  <%= render 'shared/btn_to_top' %>
 </div>

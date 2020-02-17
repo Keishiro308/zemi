@@ -68,3 +68,11 @@ gem 'aws-sdk-s3', require: false
 gem 'kaminari'
 
 gem "simple_calendar", "~> 2.0"
+
+gem 'carrierwave'
+
+gem 'fog-aws'
+
+gem 'rmagick'
+
+gem 'swiper-rails'

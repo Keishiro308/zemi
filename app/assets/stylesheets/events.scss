@@ -1,3 +1,30 @@
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@import './mediaquery';
+.swiper-container{
+  width: 100%;
+  height: 40vh;
+  .swiper-wrapper{
+    .swiper-slide{
+      img{
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+  @include tab_sp{
+    height: 20vh;
+  }
+}
+.btn_wrapper{
+  @include tab_sp{
+    .btn_item{
+      width: 150px;
+      height: 80px;
+      font-size: 30px;
+      line-height: 80px;
+      margin-right: 15px;
+    }
+  }
+}

@@ -17,6 +17,34 @@
 
     </div>
 
+    <div class="file_field">
+    
+      <% unless @event.images.empty? %>
+        <div class="swiper-container-for-form">
+          <div class="swiper-wrapper">
+            <% @event.images.each_with_index do |image, index| %>
+            <div class=<%= "swiper-slide image_#{index}" %>>
+              <%= image_tag image.name.url %>
+              <div class="btn_wrapper">
+              <%= link_to  "削除", event_destroy_image_path(@event, image_id: image.id),method: :delete, 
+              data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn_delete_event' %>
+              </div>
+            </div>
+              
+            <% end %>
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      <% end %>
+      <%= f.label :images, "画像" %>
+      <%=f.fields_for :images, @event.images.build do |i| %>
+        <%= i.file_field :name, multiple: true, class: 'target', name: "images[name][]" %>
+      <%end%>
+      
+    </div>
+
     <div class="textarea_field">
       <%= f.label :detail, "詳細" %>
       <%= f.text_area :detail %>

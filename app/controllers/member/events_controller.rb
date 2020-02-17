@@ -1,5 +1,5 @@
 class Member::EventsController < ApplicationController
-  before_action :member?, except: [:index, :date]
+  before_action :member?, except: [:index, :date, :new, :create, :destroy, :destroy_image ,:edit, :update]
   def index
     @events = Event.all
   end
@@ -17,23 +17,23 @@ class Member::EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    if @event.save
+    if @event.save_with_image(params)
       flash[:notice] = 'イベントを追加しました'
       redirect_to events_index_path
     else
-      flash[:alert] = 'イベントを追加できませんでした'
-      render new
+      flash.now[:alert] = 'イベントを追加できませんでした'
+      render 'member/events/new'
     end
   end
 
   def update
     @event = Event.find(params[:id])
-    if @event.update(event_params)
+    if @event.update_with_image(event_params, params)
       flash[:notice] = '更新しました'
       redirect_to events_index_path
     else
-      flash[:alert] = '更新できませんでした'
-      render new
+      flash.now[:alert] = '更新できませんでした'
+      render 'member/events/edit'
     end
   end
 
@@ -51,9 +51,26 @@ class Member::EventsController < ApplicationController
     redirect_to events_index_path
   end
 
-  private
-    def event_params
-      params.require(:event).permit(:title, :date, :detail)
+  def destroy_image
+    @event = Event.find(params[:id])
+    @image = @event.images.find(params[:image_id])
+    if @image.destroy
+      flash.now[:notice] = '画像を削除しました'
+    else
+      flash.now[:alert] = '画像を削除できませんでした'
     end
-    
+    render 'member/events/edit'
+  end
+  
+
+  private
+  def event_params
+    params.require(:event).permit(
+      :title, 
+      :date, 
+      :detail,
+      images_attributes: [:name]
+    )
+  end
+  
 end

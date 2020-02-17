@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'events/index' => 'member/events#index'
   get 'events/date' => 'member/events#date'
+  delete 'member/events/:id/destroy_image' => 'member/events#destroy_image', as: 'event_destroy_image'
   root 'top#index'
   devise_for :users, controllers: {
     registrations: 'users/registrations',

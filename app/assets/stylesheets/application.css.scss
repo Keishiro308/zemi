@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require swiper
  *= require simple_calendar
  *= require_tree .
  *= require_self
@@ -17,6 +18,7 @@
  @import "font-awesome-sprockets";
  @import "font-awesome";
  @import "./mediaquery.scss";
+//  @import "swiper";
  
 
 
@@ -30,6 +32,15 @@
    background-color: white;
    text-align: center;
    padding: 20px;
+   @include desktop{
+     .detail{
+       width: 90%;
+       line-height: 1.5;
+       font-size: 1.5;
+       margin-left: auto;
+       margin-right: auto;
+     }
+   }
    @include tab_sp{
      font-size: 2em;
      p{
@@ -487,13 +498,18 @@
         border-radius: 5px;
       }
     }
-    .date_field{
+    .date_field,
+    .file_field{
+      position: relative;
       width: 90%;
       margin-left: auto;
       margin-right: auto;
       label{
         font-size: 2em;
         display: block;
+      }
+      input{
+        font-size: 30px;
       }
       select{
         font-size: 45px;
@@ -510,6 +526,42 @@
       span{
         font-size: 15px;
         color: #f00;
+      }
+    }
+    .swiper-container-for-form{
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      height: 300px;
+      .swiper-wrapper{
+        .swiper-slide{
+          img{
+            display: block;
+            max-width: 85%;
+            max-height: 70%;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .btn_delete_event{
+            width: 150px;
+            height: 80px;
+            font-size: 40px;
+            line-height: 80px;
+          }
+        }
+      }
+    }
+    .swiper-button-next,
+    .swiper-button-prev{
+      position: absolute;
+      top: 40%;
+    }
+    .swiper-pagination{
+      display: block;
+      text-align: center;
+      width: 100%;
+      span{
+        margin-right: 10px;
       }
     }
   };
@@ -666,11 +718,15 @@
         border-radius: 5px;
       }
     }
-    .date_field{
+    .date_field,
+    .file_field{
+      position: relative;
       width: 90%;
       margin-left: auto;
       margin-right: auto;
       input{
+        width: 100%;
+        font-size: 15px;
         &.is_error{
           border-color: #f00;
         }
@@ -681,6 +737,36 @@
       span{
         font-size: 15px;
         color: #f00;
+      }
+    }
+    .swiper-container-for-form{
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      height: 300px;
+      .swiper-wrapper{
+        .swiper-slide{
+          img{
+            display: block;
+            max-width: 85%;
+            max-height: 70%;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+      }
+    }
+    .swiper-button-next,
+    .swiper-button-prev{
+      position: absolute;
+      top: 40%;
+    }
+    .swiper-pagination{
+      display: block;
+      text-align: center;
+      width: 100%;
+      span{
+        margin-right: 10px;
       }
     }
   };
@@ -931,6 +1017,38 @@ select::-ms-expand {
 }
 
 /*btn*/
+.up_to_top{
+  @include desktop{
+    display: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #04e25a;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      color: white;
+      line-height: 50px;
+      text-align: center;
+      font-size: 25px;
+      font-weight: bold;
+  }
+  @include tab_sp{
+    display: none;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #04e25a;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      color: white;
+      line-height: 100px;
+      text-align: center;
+      font-size: 45px;
+      font-weight: bold;
+  }
+}
 .btn{
   width: 100px;
   height: 50px;
@@ -1032,6 +1150,28 @@ a{
     width: 120px;
     height: 50px;
     line-height: 50px;
+  }
+}
+.btn_wrapper{
+  width: 100%;
+  text-align: center;
+  a{
+    &.btn_delete_event{
+      background-color: #ff4101;
+      width: 80px;
+      height: 40px;
+      text-align: center;
+      border-radius: 15px;
+      color: white;
+      font-size: 15px;
+      line-height: 40px;
+      display: inline-block;
+      text-decoration: none;
+      margin: 0;
+      font-weight: bold;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 
