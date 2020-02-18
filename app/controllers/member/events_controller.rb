@@ -1,5 +1,5 @@
 class Member::EventsController < ApplicationController
-  before_action :member?, except: [:index, :date, :new, :create, :destroy, :destroy_image ,:edit, :update]
+  before_action :member?, only: [:new, :create, :destroy, :destroy_image ,:edit, :update]
   def index
     @events = Event.all
   end
